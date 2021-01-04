@@ -1,0 +1,13 @@
+[package]
+name = "key_logger_v2"
+version = "0.1.0"
+authors = ["Zenthae <zenthae@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+chrono = { version = "0.4.19", features = ["serde"] }
+serde = { version = "1.0.117", features = ["serde_derive"] }
+serde_json = "1.0.59"
+winit = { version = "0.23.0", features = ["serde"] }
+crossbeam = "0.8.0"
