@@ -9,7 +9,7 @@ use std::{
 };
 
 use chrono::Utc;
-use key_logger_v2::Input;
+use key_logger_v2::{Input, MouseClick};
 use winit::{
     dpi::LogicalSize,
     event::{DeviceEvent, ElementState, Event, KeyboardInput, WindowEvent},
@@ -43,9 +43,9 @@ fn main() {
                     },
                 ..
             } => match button {
-                1 => Input::LeftClick,
-                2 => Input::MiddleClick,
-                3 => Input::RightClick,
+                1 => Input::Click(MouseClick::LeftClick),
+                2 => Input::Click(MouseClick::MiddleClick),
+                3 => Input::Click(MouseClick::RightClick),
                 _ => return,
             },
 
