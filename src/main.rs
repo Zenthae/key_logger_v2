@@ -1,5 +1,5 @@
 // Switch between "windows" and "console" to hide the console
-// #![windows_subsystem = "windows"]
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use std::{
     env,
