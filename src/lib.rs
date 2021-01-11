@@ -1,5 +1,10 @@
+use std::collections::HashMap;
+
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use winit::event::VirtualKeyCode;
+
+pub type RecordHolder = HashMap<Input, Vec<DateTime<Utc>>>;
 
 /// Representation of an user input.
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, Hash, Clone)]
