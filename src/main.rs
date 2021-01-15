@@ -26,7 +26,7 @@ const LOG_FILE_NAME: &str = "records.log";
 fn main() {
     // Switch to `with_capacity` if the default capacity doesn't fit
     // 1024b =~ 25event
-    let mut bw = BufWriter::with_capacity(8 * 1024, file());
+    let mut bw = BufWriter::with_capacity(1 * 1024, file());
 
     let event_loop = EventLoop::with_user_event();
     let _window = window_builder(&event_loop);
@@ -64,7 +64,7 @@ fn main() {
                 ..
             } => {
                 // Flush the buffer writer when the application is closing to save the unsaved data.
-                bw.flush().expect("Failed to flush, sad but true.");
+                // bw.flush().expect("Failed to flush, sad but true."); sad, but it prevent corrupted data
                 return *control_flow = ControlFlow::Exit;
             }
             _ => return,
