@@ -1,4 +1,8 @@
-use std::fs::{File, OpenOptions};
+use std::{
+    fs::{File, OpenOptions},
+    io::Write,
+    path::Path,
+};
 
 use chrono::{DateTime, Local, Utc};
 use key_logger_v2::{Input, RecordHolder};
@@ -23,7 +27,19 @@ fn main() {
             .into_iter::<(Input, DateTime<Utc>)>()
             .filter_map(|r| {
                 // println!("{:?}", r);
-                r.ok()
+                match r {
+                    Ok(v) => Some(v),
+                    Err(e) => {
+                        // println!("{:?}", e);
+                        if let Ok(mut crash_report) = File::create(format!(
+                            "./crash-report-{}.txt",
+                            Local::now().format("%F_%H.%M.%S")
+                        )) {
+                            crash_report.write(format!("{}", e).as_bytes()).unwrap();
+                        };
+                        None
+                    }
+                }
             })
         {
             // println!("{:?} - {:?}", input, time);
