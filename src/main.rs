@@ -62,9 +62,13 @@ fn main() {
             Event::WindowEvent {
                 event: WindowEvent::CloseRequested,
                 ..
+            }
+            | Event::WindowEvent {
+                event: WindowEvent::EndSession,
+                ..
             } => {
                 // Flush the buffer writer when the application is closing to save the unsaved data.
-                // bw.flush().expect("Failed to flush, sad but true."); sad, but it prevent corrupted data
+                bw.flush().expect("Failed to flush, sad but true.");
                 return *control_flow = ControlFlow::Exit;
             }
             _ => return,

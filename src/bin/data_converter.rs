@@ -1,7 +1,6 @@
 use std::{
     fs::{File, OpenOptions},
     io::Write,
-    path::Path,
 };
 
 use chrono::{DateTime, Local, Utc};
